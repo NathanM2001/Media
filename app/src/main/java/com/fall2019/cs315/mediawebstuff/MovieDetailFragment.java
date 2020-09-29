@@ -1,6 +1,10 @@
 package com.fall2019.cs315.mediawebstuff;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -61,6 +65,24 @@ public class MovieDetailFragment extends Fragment {
 
                 // CS315: DO THIS
                 // TODO: Set the image based upon the string we got stashed in getMovieImage()
+                if(mItem.getMovieTitle() == "DeepWater Horizon")
+                activity.findViewById(R.id.movieImageView).setBackgroundResource(R.drawable.water);
+                else if(mItem.getMovieTitle() == "Martian"){
+                    activity.findViewById(R.id.movieImageView).setBackgroundResource(R.drawable.martian);
+                }
+                else if(mItem.getMovieTitle() == "Chicago Fire"){
+                    activity.findViewById(R.id.movieImageView).setBackgroundResource(R.drawable.fire);
+                }
+                else if(mItem.getMovieTitle() == "Chicago PD"){
+                    activity.findViewById(R.id.movieImageView).setBackgroundResource(R.drawable.pd);
+
+                }
+                else if(mItem.getMovieTitle() == "NCIS"){
+                    activity.findViewById(R.id.movieImageView).setBackgroundResource(R.drawable.ncis);
+
+                }
+
+
 
             }
 
@@ -68,7 +90,14 @@ public class MovieDetailFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Context context = view.getContext();
+                    String url = mItem.getMovieWeblink();
+                    Intent intent = new Intent(context, Website.class);
+                    intent.putExtra("url",url);
+                    if(mItem.getMovieTitle() == "DeepWater Horizon"){
 
+                    }
+                    context.startActivity(intent);
                     // CS315: DO THIS
                     // TODO: launch the webpage with the URL we gots back from the model... also lose the snackbar stuff
                     // TODO: hint - you need to establish a new intent and launch a new Activity
